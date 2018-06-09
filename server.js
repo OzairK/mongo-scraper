@@ -16,6 +16,11 @@ var app = express();
 app.use(logger("dev"));
 //for form submissions
 app.use(bodyParser.urlencoded({extented: true}));
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 // makes public folder th static directory
 app.use(express.static("public"));
 // conecting to Mongo DB
@@ -27,7 +32,11 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
-// this is the get route to scrap dat
+app.get("/" ,function(req,res){
+  res.render("index")
+})
+
+// this is the get route to scrap data
 app.get("/scrape", function(req, res){
     
     // Make a request call to grab news title, link, and summary from npr site
