@@ -11,12 +11,14 @@ https://pure-temple-84078.herokuapp.com/
 ## Technologies Used:
 
 - Javascript
+- JQuery
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
 - Bootstrap
 - Handlebars.js
+- AJAX/JSON
 - NPM Packages: Express, Mongoose, Body-parser, Express-Handlebars, Cheerio, Request
 
 ## Author
