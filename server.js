@@ -36,6 +36,10 @@ app.get("/" ,function(req,res){
   res.render("index")
 })
 
+app.get("/saved", function(req,res){
+  res.render("saved");
+})
+
 // this is the get route to scrap data
 app.get("/scrape", function(req, res){
     
@@ -52,6 +56,7 @@ request("https://www.npr.org/sections/news/", function(error, response, html) {
       result.title = $(element).children("h2.title").children("a").text();
       result.link = $(element).children("h2.title").children("a").attr("href");
       result.summary = $(element).children("p.teaser").children("a").text();
+      result.save = false;
   
       // pushing results into database
       db.Article.create(result)
@@ -94,6 +99,25 @@ app.post("/articles/:id", function(req,res){
   db.Note.create(req.body)
   .then(function(dbNote){
     return db.Article.findOneAndUpdate({_id: req.params.id}, {note:dbNote._id}, {new:true} );
+  })
+  .catch(function(error){
+    res.json(error)
+  })
+})
+app.post("/savethisarticle/:id", function(req,res){
+  db.Article.findOneAndUpdate({_id: req.params.id}, {artsave:true})
+  .then(function(dbNote){
+    res.json(dbNote)
+  })
+  .catch(function(error){
+    res.json(error)
+  })
+})
+
+app.post("/deletethisarticle/:id", function(req,res){
+  db.Article.findOneAndUpdate({_id: req.params.id}, {artsave:false})
+  .then(function(dbNote){
+    res.json(dbNote)
   })
   .catch(function(error){
     res.json(error)

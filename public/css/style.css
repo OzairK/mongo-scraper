@@ -1,10 +1,17 @@
+/* 
+body {
+  background-image: url("paper.gif");
+  background-color: #cccccc;
+} */
 
-body { background-color: #F2F6D0 }
+body { background-color: lightsalmon}
 #wrapper {
   width: 960px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 5%;
+  background-image: url("newspaper.jpg");
+  background: url("https://manville.files.wordpress.com/2010/05/banner-6272010.jpg") repeat center center fixed; ;
 }
 #articles {
   display: inline-block;
@@ -28,4 +35,8 @@ input {
 textarea {
   height: 200px;
   font-size: 18px;
+}
+
+h4{
+  background-color: antiquewhite;
 }
