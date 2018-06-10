@@ -4,10 +4,10 @@
 function renderArticles() {
   $.getJSON("/articles", function (data) {
     console.log(data)
-    for (var i = 0; i < 20; i++) {
+    for (var i = (data.length-1); i > (data.length-20); i--) {
 
       var newCard = `<div class="card">
-      <h5 class="card-header">${data[i].title}</h5>
+      <a href="${data[i].link}"><h5 class="card-header">${data[i].title}</h5></a>
       <div class="card-body">
       <p class="card-text">${data[i].summary}</p>
       <a  href="#"  data-id="${ data[i]._id}" class="btn btn-primary saveArticle">Save Article</a>
@@ -39,7 +39,9 @@ $(document).on("click", "#scrapeNow", function () {
     url: "/scrape",
   })
     .then(function (data) {
-      renderArticles()
+      $("#articles").empty();
+      renderArticles();
     })
 })
+
 

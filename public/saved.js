@@ -8,7 +8,7 @@ function renderArticles() {
             if (data[i].artsave === true) {
 
                 var newCard = `<div class="card">
-                <h5 class="card-header">${data[i].title}</h5>
+                <a href="${data[i].link}"><h5 class="card-header">${data[i].title}</h5></a>
                 <div class="card-body">
                 <p class="card-text">${data[i].summary}</p>
                 <a  href="#"  data-id="${ data[i]._id}" class="btn btn-primary deleteArticle">Delete</a>
